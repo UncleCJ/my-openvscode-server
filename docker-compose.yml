@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  openvscode-server:
+    build: .
+    container_name: openvscode-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      - DOCKER_MODS=linuxserver/mods:code-server-python3|linuxserver/mods:universal-git
+    volumes:
+      - /home/pi/Downloads/docker-openvscode-server:/config
+      - /home/pi:/config/workspace
+    ports:
+      - 3000:3000
+    restart: unless-stopped
